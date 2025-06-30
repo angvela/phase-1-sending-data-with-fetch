@@ -1,29 +1,28 @@
-// function submitData(name, email) {
-  const formData = {
-    name: name,
-    email: email,
-  };
-
-  const configurationObject = {
+function submitData(name, email) {
+  return fetch("http://localhost:3000/users", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Accept": "application/json",
+      "Accept": "application/json"
     },
-    body: JSON.stringify(formData),
-  };
-
-  return fetch("http://localhost:3000/users", configurationObject)
+    body: JSON.stringify({ name, email })
+  })
     .then(response => response.json())
-    .then(object => {
-      const p = document.createElement("p");
-      p.textContent = `User ID: ${object.id}`;
-      document.body.appendChild(p);
+    .then(data => {
+      const output = document.getElementById("output");
+      output.textContent = data.id;
+      return data;
     })
     .catch(error => {
-      const p = document.createElement("p");
-      p.textContent = `Error: ${error.message}`;
-      document.body.appendChild(p);
+      const output = document.getElementById("output");
+      output.textContent = error.message;
     });
 }
-Add your code here
+
+// Optional: Connect the form to submitData
+document.getElementById("user-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  submitData(name, email);
+});
