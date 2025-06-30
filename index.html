@@ -1,42 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
   <title>Submit User Data</title>
 </head>
 <body>
-  <h1>Submit User Data</h1>
-
+  <h1>Submit User</h1>
   <form id="user-form">
-    <label>
-      Name:
-      <input type="text" id="name" name="name" required />
+    <label for="name">Name:
+      <input type="text" id="name" name="name" required>
     </label>
-    <br /><br />
-    <label>
-      Email:
-      <input type="email" id="email" name="email" required />
+    <br>
+    <label for="email">Email:
+      <input type="email" id="email" name="email" required>
     </label>
-    <br /><br />
-    <input type="submit" value="Submit" />
+    <br>
+    <button type="submit">Submit</button>
   </form>
-
+  <div id="output"></div>
   <script src="index.js"></script>
-  <script>
-    // Prevent default form submit and call submitData
-    const form = document.getElementById("user-form");
-    form.addEventListener("submit", function (event) {
-      event.preventDefault(); // stop the page from reloading
-
-      const nameInput = document.getElementById("name").value;
-      const emailInput = document.getElementById("email").value;
-
-      submitData(nameInput, emailInput);
-      
-      // Optional: Clear the form after submit
-      form.reset();
-    });
-  </script>
 </body>
 </html>
